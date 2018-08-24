@@ -1,0 +1,55 @@
+<head>
+<style>
+        .container {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size:35px;
+        }
+        /*div {  */
+        /*width: 700px; */
+        /*height: 700px;*/
+        /*position: absolute; */
+        /*top:0;*/
+        /*bottom: 0; */
+        /*left: 0; */
+        /*right: 0; */
+        /*margin: auto; }*/
+</style>
+</head>
+<body>
+<div class="container" align ="center">
+<h3> New Pension </h3>
+</div>
+<center><input type="date" name="date"></center>
+
+<center>
+  <%= form_for(@pension) do |f| %>
+    <% if @pension.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@pension.errors.count, "error") %> prohibited this pension from being saved:</h2>
+  
+        <ul>
+        <% @pension.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :content %><br>
+      <%= f.text_area :content %>
+    </div>
+    <div class="field">
+      <%= f.label :image %><br>
+      <%= f.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</center>
+<center><%= link_to 'Back', pensions_path %>
+</body>

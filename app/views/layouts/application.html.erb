@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="https://newgaenolram-hourensou.c9users.io/img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+		<!--
+		CSS
+		============================================= -->
+		<link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/font.css">
+		<link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/linearicons.css">
+		<link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/bootstrap.css">
+		<link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/magnific-popup.css">
+		<link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/nice-select.css">	
+		<link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/hexagons.min.css">							
+		<link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/animate.min.css">
+		<link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/owl.carousel.css">
+		<link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/main.css">
+  <title>Workspace</title>
+  <!-- turbolink가 웹을 빠르게 해준다지만 현재 충돌이 일어남(2018의 원인) -->
+  <!-- 주석처리 시 assets/stylesheets.scaffolds.scss 파일 자동적용이 되지 않음 -->
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <style>
+	  .logo {
+	  	height: 100px;
+	  	width: 200px;
+	  }
+  
+    .content
+    {
+      margin: 170px 130px 100px 130px;
+      padding: 1em;
+      height: auto;
+    }
+    
+    #header
+    {
+      //background-color: red;
+    }
+    
+   .nav-menu a {
+    padding: 0 8px 0px 8px;
+    text-decoration: none;
+    display: inline-block;
+    color: #525252;
+    font-weight: BOLD;
+    font-size: 13px;
+    text-transform: uppercase;
+    outline: none;
+  }
+  
+  .nav-menu a:hover {
+  	color: black;
+  }
+  
+  .sf-with-ul {
+  	color: #525252;
+  }
+  
+  .sf-with-ul:hover {
+  	color: black;
+  }
+  
+  body {
+	  background-color: #fff;
+	  color: #333;
+	  font-family: verdana, arial, helvetica, sans-serif;
+	  font-size: 13px;
+	  line-height: 18px;
+	}
+	
+	p, ol, ul, td {
+	  font-family: verdana, arial, helvetica, sans-serif;
+	  font-size: 13px;
+	  line-height: 18px;
+	}
+	
+	pre {
+	  background-color: #eee;
+	  padding: 10px;
+	  font-size: 11px;
+	}
+	
+	a {
+	  color: #000;
+	
+	  &:visited {
+	    color: #666;
+	  }
+	
+	  &:hover {
+	    color: #fff;
+	    background-color: #000;
+	  }
+	}
+	
+	div {
+	  &.field, &.actions {
+	    margin-bottom: 10px;
+	  }
+	}
+	
+	#notice {
+	  color: green;
+	}
+	
+	.field_with_errors {
+	  padding: 2px;
+	  background-color: red;
+	  display: table;
+	}
+
+	#error_explanation {
+	  width: 450px;
+	  border: 2px solid red;
+	  padding: 7px;
+	  padding-bottom: 0;
+	  margin-bottom: 20px;
+	  background-color: #f0f0f0;
+
+	  h2 {
+	    text-align: left;
+	    font-weight: bold;
+	    padding: 5px 5px 5px 15px;
+	    font-size: 12px;
+	    margin: -7px;
+	    margin-bottom: 0px;
+	    background-color: #c00;
+	    color: #fff;
+	  }
+	
+	  ul li {
+	    font-size: 12px;
+	    list-style: square;
+	  }
+	}
+	
+	.single-footer-widget
+	{
+		padding-right: 0px;
+	}
+	
+	@media (max-width: 500px)
+	{
+		.footer-area.section-gap {
+			visibility: hidden;
+		}
+	}
+  </style>
+</head>
+
+<body>
+  <%= render 'layouts/header'%>
+  
+  <div class="content">
+  <%= yield %>
+  </div>
+  
+  <%= render 'layouts/footer'%>
+  
+	<script src="https://newgaenolram-hourensou.c9users.io/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://newgaenolram-hourensou.c9users.io/js/vendor/bootstrap.min.js"></script>
+	<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script> -->
+	<script src="https://newgaenolram-hourensou.c9users.io/js/easing.min.js"></script>			
+	<script src="https://newgaenolram-hourensou.c9users.io/js/hoverIntent.js"></script>
+	<script src="https://newgaenolram-hourensou.c9users.io/js/superfish.min.js"></script>	
+	<script src="https://newgaenolram-hourensou.c9users.io/js/jquery.ajaxchimp.min.js"></script>
+	<script src="https://newgaenolram-hourensou.c9users.io/js/jquery.magnific-popup.min.js"></script>	
+	<script src="https://newgaenolram-hourensou.c9users.io/js/owl.carousel.min.js"></script>	
+	<script src="https://newgaenolram-hourensou.c9users.io/js/hexagons.min.js"></script>							
+	<script src="https://newgaenolram-hourensou.c9users.io/js/jquery.nice-select.min.js"></script>	
+	<script src="https://newgaenolram-hourensou.c9users.io/js/jquery.counterup.min.js"></script>
+	<script src="https://newgaenolram-hourensou.c9users.io/js/waypoints.min.js"></script>							
+	<script src="https://newgaenolram-hourensou.c9users.io/js/mail-script.js"></script>	
+	<script src="https://newgaenolram-hourensou.c9users.io/js/main.js"></script>	
+</body>
+</html>

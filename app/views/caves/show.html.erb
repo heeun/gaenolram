@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/stylesheet-show.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="layer">
+        <div class="buttons">
+          <div class="button">
+            <%= link_to 'Back', caves_path %>
+          </div>
+          <div class="button">
+            <%= link_to 'Edit', edit_cafe_path(@cafe) %>
+          </div>
+          <div class="button">
+            <%= link_to 'Destroy', @cafe, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+        <div class="article">
+          <h3 class="title"><%= @cafe.title %></h3>
+          <div class="layer-img">
+            <img class="main-img" src="<%= @cafe.image %>" alt="main img">
+          </div>
+          <hr>
+          <div class="article-content">
+            <center><%= @cafe.content %>
+            <%= @cafe.user %></center>
+          </div>
+          <hr>
+          <div class="like">
+            <% if @cafe.l_users.include?(current_user) %>
+              <!--좋아요를 했다면-->
+              <span class="like_after">
+                <%= link_to 'LIKE', like_cafe_path, method: :post %>
+              </span>
+              <% else %>
+              <!--좋아요를 안했다면-->
+              <span class="like_before">
+                <%= link_to 'LIKE', like_cafe_path, method: :post %>
+              </span>
+            <% end %>
+            <a> <%= @cafe.like2s.count %> 명이 좋아합니다.</a>
+          </div>
+          <hr>
+          <div class="comment-input">
+            <%=form_tag '/caves/comment', method: 'post' do %>
+              <input type="hidden" name="user" value="<%=current_user.name%>">
+            	<input type="hidden" name="id" value="<%=@cafe.id%>">
+            	<input type="text" name="comment">
+            	<input type="submit">
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%@cafe_comments.each do |comment| %> 
+      	<% if comment.article_id == @cafe.id %>
+      		<div class="comments">
+      		  <p class="user-name">
+      		    <% if comment.user == current_user.name %>
+      		    <%=comment.user%>
+      		     <a class="button-delete"  href="/caves/<%=@cafe.id%>/comment/<%=comment.id%>" data-method="delete" class="btn btn-default">delete</a>
+      		    <% end %>
+      		  </p>
+      		  <!--%= link_to '삭제', [comment.] , method: :delete, data: { confirm: 'Are you sure?' } %-->
+      		  <hr class="split">
+      			<p class=""><%=comment.message%></p>
+      		</div>
+      	<% end %>
+      <% end %>
+    </div>
+  </body>
+</html>

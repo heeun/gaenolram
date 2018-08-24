@@ -1,0 +1,214 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/stylesheet-index.css">
+    <style>
+      .map-bar {
+        padding: 30px;
+      }
+      
+      #map {
+        max-height: 100%;
+        max-width: 100%;
+        min-height: 20%;
+        min-width: 20%;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <section class="banner-area" id="home">
+			<div class="container">
+				<div class="row d-flex align-items-center justify-content-center">
+					<div class="banner-content col-lg-3 col-md-3">
+						<h1>Dog Meeting</h1>
+					</div>
+				</div>
+			</div>
+    </section>
+      <div class="map-bar">
+      <div id="map" , style="width:1557px; height:600px;"></div>
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fafb9bbd0f83c22035a6d6670c1f2ad9&libraries=services"></script>
+      <script>
+        var infowindow = new daum.maps.InfoWindow({zIndex: 1});
+        var mapContainer = document.getElementById('map');
+        var mapOption = 
+        {
+            center: new daum.maps.LatLng(37.551106, 126.991110),
+            level: 5
+        };
+        var geocoder = new daum.maps.services.Geocoder();
+        var map = new daum.maps.Map(mapContainer, mapOption);
+        var ps = new daum.maps.services.Places(map);
+        
+        function wnth(result, status) 
+        {
+            if (status === daum.maps.services.Status.OK) 
+            {
+                var prefix = result[0].address.region_3depth_name;
+                ps.keywordSearch(prefix + ' 공원', placesSearchCB);
+            }
+        }
+        var lat;
+        var log;
+        function getLocation() 
+        {
+            // GPS를 지원하면
+            if (navigator.geolocation) 
+            {
+              navigator.geolocation.getCurrentPosition(function(position) 
+              {
+                lat = position.coords.latitude;
+                log = position.coords.longitude;
+                var coord = new daum.maps.LatLng(lat, log);
+                geocoder.coord2Address(coord.getLng(), coord.getLat(), wnth);
+                //alert(position.coords.latitude + ' ' + position.coords.longitude);
+              }, 
+              function(error) 
+              {
+                alert('GPS 주소를 가져올 수 없어 서울을 기준으로 탐색합니다.');
+              },
+              {
+                enableHighAccuracy: true,
+                maximumAge: 0,
+                timeout: Infinity
+              });
+            } else {
+              alert('GPS 주소를 가져올 수 없어 서울을 기준으로 탐색합니다.');
+            }
+        }
+        getLocation();
+    
+        function placesSearchCB(data, status, pagination) 
+        {
+            if (status === daum.maps.services.Status.OK) 
+            {
+                var bounds = new daum.maps.LatLngBounds();
+    
+                for (var i = 0; i < data.length; i++) 
+                {
+                    displayMarker(data[i]);
+                    bounds.extend(new daum.maps.LatLng(data[i].y, data[i].x));
+                }
+                // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+                map.setBounds(bounds);
+            } 
+            else if (status === daum.maps.services.Status.ZERO_RESULT) 
+            {
+                alert("No results");
+            } 
+            else 
+            {
+                alert("Error");
+            }
+        }
+    
+        // 지도에 마커를 표시하는 함수입니다
+        function displayMarker(place) 
+        {
+            var marker = new daum.maps.Marker({
+                map: map,
+                position: new daum.maps.LatLng(place.y, place.x)
+            });
+    
+            // 마커에 클릭이벤트를 등록합니다
+            daum.maps.event.addListener(marker, 'click', function () 
+            {
+                // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+                infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+                
+                infowindow.open(map, marker);
+            });
+        }
+      </script>
+    </div>
+    <div class="container-right-bar">
+      <div class="right-bar">
+        <div class="search-bar">
+          <%= form_tag meetings_path, :method => :get do %>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "검색", :name => nil %>
+          <% end %>
+        </div>
+    
+        <div class="new_article">
+          <%= link_to 'New Meeting', new_meeting_path %>
+        </div>
+      </div>
+    </div>
+    <section class="list">
+      <div class="container">
+        <div class="titlefont">
+          Best <span>Pet</span> Top3
+        </div>
+        <div class ="col">
+          <% pension1 = nil%>
+          <% pension2 = nil%>
+          <% pension3 = nil%>
+          <% @meetings.each do |pension|%>
+            <% if pension1 == nil || pension1.like3s.count < pension.like3s.count%>
+              <%pension3 = pension2%>
+              <%pension2 = pension1%>
+              <%pension1 = pension%>
+            <% elsif pension2 == nil || pension2.like3s.count < pension.like3s.count %>
+              <%pension3 = pension2%>
+              <%pension2 = pension%>
+            <% elsif pension3 == nil || pension3.like3s.count < pension.like3s.count %>
+              <%pension3 = pension%>
+            <%end%>
+          <%end%>
+          <div class="best-pension">
+            <% if pension1 != nil %>
+              <div class="card">
+                <img class="img-top" src="<%=pension1.image.url%>" alt="Card image cap">
+                <hr>
+                <div class="card-body">
+                  <h6 class="card-title"><%=pension1.title%></h6>
+                  <div class="button-type-1"><%= link_to 'Detail', "meetings/#{pension1.id}/" %></div>
+                  <hr>
+                  <p><i class="fa fa-heart"></i> <%= pension1.like3s.size %> 명</p>
+                </div>
+              </div>
+            <%end%>
+            <% if pension2 != nil %>
+              <div class="card">
+                <img class="img-top" src="<%=pension2.image.url%>" alt="Card image cap">
+                <hr>
+                <div class="card-body">
+                  <h6 class="card-title"><%=pension2.title%></h6>
+                  <div class="button-type-1"><%= link_to 'Detail', "meetings/#{pension2.id}/" %></div>
+                  <hr>
+                  <p><i class="fa fa-heart"></i> <%= pension2.like3s.size %> 명</p>
+                </div>
+              </div>
+            <%end%>
+            <% if pension3 != nil %>
+            <div class="card">
+              <img class="img-top" src="<%=pension3.image.url%>" alt="Card image cap">
+              <hr>
+              <div class="card-body">
+                <h6 class="card-title"><%=pension3.title%></h6>
+                <div class="button-type-1"><%= link_to 'Detail', "meetings/#{pension3.id}/" %></div>
+                <hr>
+                <p><i class="fa fa-heart"></i> <%= pension3.like3s.size %> 명</p>
+              </div>
+            </div>
+            <%end%>
+          </div>
+          <%@meetings.each do |x|%>
+            <div class="card">
+              <img class="img-top" src="<%=x.image.url%>" alt="Card image cap">
+              <hr>
+              <div class="card-body">
+                <h6 class="card-title"><%=x.title%></h6>
+                <!--p class="card-text"><%=x.content%></p-->
+                <div class="button-type-1"><%= link_to 'Contact', "meetings/#{x.id}/" %></div>
+                <hr>
+                <p><i class="fa fa-heart"></i> <%= x.like3s.size %> 명</p>
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

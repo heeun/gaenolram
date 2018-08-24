@@ -1,0 +1,172 @@
+.content {
+  margin-top: 165px;
+}
+
+.container {
+  padding-left: 90px;
+  padding-right: 90px;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 18px;
+}
+
+.layer {
+  min-width: 500px;
+}
+
+.main-img {
+  height: auto;
+  max-width: 750px;
+  overflow: hidden;
+}
+
+.button a {
+  background-color: #E0DFDF;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: BOLD;
+  margin-left: 5px;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #AAAAAA;
+  border-style: solid;
+  padding: 1px 5px 1px 5px;
+}
+
+.buttons {
+  width: 100%;
+  height: 25px;
+  font-family: 'Nanum Myeongjo';
+  display: block;
+}
+
+.buttons .button {
+  float: right;
+}
+
+.article {
+  border-radius: 4px;
+  border-width: 4px;
+  border-color: #dcdcdc;
+  border-style: solid;
+  height: auto;
+  padding: 20px 30px 10px 30px;
+}
+
+.layer-img {
+  text-align: center;
+  overflow: hidden;
+}
+
+.article p {
+  font-family: 'Song Myung';
+  font-size: 17px;
+}
+
+.like_before {
+  padding-right: 5px;
+}
+
+.like_after {
+  padding-right: 5px;
+}
+
+.like_before a {
+  color: #BEBEBE;
+  background-color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: BOLD;
+  margin-left: 5px;
+  border-radius: 4px;
+  border-width: 2px;
+  border-color: #BEBEBE;
+  border-style: solid;
+  padding: 1.5px 5.5px 1.5px 5.5px;
+}
+
+.like_after a {
+  color: #0088D4;
+  background-color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: BOLD;
+  margin-left: 5px;
+  border-radius: 4px;
+  border-width: 2px;
+  border-color: #BEBEBE;
+  border-style: solid;
+  padding: 1.5px 5.5px 1.5px 5.5px;
+}
+
+.article-content {
+  padding: 20px 10px 50px 10px;
+  letter-spacing: 1px;
+  line-height: 130%;
+  font-family: 'normal';
+}
+
+.like {
+  text-align: center;
+  padding-bottom: 5px;
+  padding-top: 3px;
+}
+
+.like a {
+  font-weight: BOLD;
+}
+
+.comment-input {
+  width: 100%;
+  text-align: center;
+}
+
+.comment-input input[type="text"] {
+  height: 80px;
+  width: 75%;
+}
+
+.comment-input input[type="submit"] {
+  height: 80px;
+  width: 80px;
+}
+
+.comments {
+  margin: 20px 0px 6px 0px;
+  color: #0088D4;
+  background-color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: BOLD;
+  border-radius: 5px;
+  border-width: 4px;
+  border-color: #dcdcdc;
+  border-style: solid;
+  padding: 5px 10px 5px 10px;
+}
+
+.user-name {
+  margin-bottom: 0px;
+  color: orange;
+}
+
+.split {
+  margin-top: 7px;
+}
+
+.button-delete {
+  float: right;
+  background-color: #E0DFDF;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: BOLD;
+  margin-left: 5px;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #AAAAAA;
+  border-style: solid;
+  padding: 0.5px 4px 0.5px 4px;
+}
+
+.title {
+  text-align: center;
+}

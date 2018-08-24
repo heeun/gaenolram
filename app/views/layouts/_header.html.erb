@@ -1,0 +1,36 @@
+<header id="header" id="home">
+<div class="container main-menu">
+	<div class="row align-items-center justify-content-between d-flex">
+      <div id="logo">
+        <a href="https://newgaenolram-hourensou.c9users.io"><img src="https://newgaenolram-hourensou.c9users.io/img/gaenolramlogo.png" height="100" width="200" /></a>
+      </div>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="https://newgaenolram-hourensou.c9users.io">HOME</a></li>
+          <li><a href="https://newgaenolram-hourensou.c9users.io/about.html">ABOUT US</a></li>
+          <li><a href="https://newgaenolram-hourensou.c9users.io/caves">CAFE</a></li>
+          <li><a href="https://newgaenolram-hourensou.c9users.io/pensions">PENSION</a></li>
+          <li><a href="https://newgaenolram-hourensou.c9users.io/meetings">개팅</a></li>
+          <li><a href="https://newgaenolram-hourensou.c9users.io/clinics">VET CLINIC</a></li>
+          <li class="menu-has-children"><a>COMMUNITY</a>
+            <ul>
+              <li><a href="https://newgaenolram-hourensou.c9users.io/elements.html">공지사항</a></li>  
+              <li><a href="https://newgaenolram-hourensou.c9users.io//asks">문의사항</a></li>
+            </ul>
+          </li>
+          <li class="menu-has-children"><a>User</a>
+          <ul>
+          	<% if user_signed_in?%>
+					   	<li class="UserMenu" ><a><%=current_user.name%></a></li> 
+					   	<li class="UserMenu" ><%=link_to '로그아웃', destroy_user_session_path, method: 'delete'%></li> 
+					  <% else %>
+					  	<li class="UserMenu"><%=link_to '회원가입', new_user_registration_path%></li> 
+					  	<li class="UserMenu"><%=link_to '로그인', new_user_session_path%></li> 
+					  <% end %>
+          </ul>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->		    		
+	</div>
+</div>
+</header><!-- #header -->

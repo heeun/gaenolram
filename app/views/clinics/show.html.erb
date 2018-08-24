@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/stylesheet-show.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="layer">
+        <div class="buttons">
+          <div class="button">
+            <%= link_to 'Back', clinics_path %>
+          </div>
+          <div class="button">
+            <%= link_to 'Edit', edit_clinic_path(@clinic) %>
+          </div>
+          <div class="button">
+            <%= link_to 'Destroy', @clinic, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+        <div class="article">
+          <center><h3><%= @clinic.title %></h3>
+          <h2><%= @clinic.user %></h2></center>
+          <hr>
+          <div class="layer-img">
+            <img class="main-img" src="<%= @clinic.image %>" alt="main img">
+          </div>
+          <hr>
+          <div class="article-content">
+            <center><%= @clinic.content %>
+            <%= @clinic.user %></center>
+          </div>
+          <hr>
+          <div class="like">
+            <% if @clinic.l_users.include?(current_user) %>
+              <!--좋아요를 했다면-->
+              <span class="like_after">
+                <%= link_to 'LIKE', like_clinic_path, method: :post %>
+              </span>
+              <% else %>
+              <!--좋아요를 안했다면-->
+              <span class="like_before">
+                <%= link_to 'LIKE', like_clinic_path, method: :post %>
+              </span>
+            <% end %>
+            <a> <%= @clinic.like4s.count %> 명이 좋아합니다.</a>
+          </div>
+          <hr>
+          <div class="comment-input">
+            <%=form_tag '/clinics/comment', method: 'post' do %>
+              <input type="hidden" name="user" value="<%=current_user.name%>">
+            	<input type="hidden" name="id" value="<%=@clinic.id%>">
+            	<input type="text" name="comment">
+            	<input type="submit">
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%@clinic_comments.each do |comment| %> 
+      	<% if comment.article_id == @clinic.id %>
+      		<div class="comments">
+      		  <p class="user-name">
+      		    <% if comment.user == current_user.name %>
+      		    <%=comment.user%>
+      		     <a class="button-delete"  href="/clinics/<%=@clinic.id%>/comment/<%=comment.id%>" data-method="delete" class="btn btn-default">delete</a>
+      		    <% end %>
+      		  </p>
+      		  <!--%= link_to '삭제', [comment.] , method: :delete, data: { confirm: 'Are you sure?' } %-->
+      		  <hr class="split">
+      			<p class=""><%=comment.message%></p>
+      		</div>
+      	<% end %>
+      <% end %>
+    </div>
+  </body>
+</html>

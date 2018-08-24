@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/stylesheet-show.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="layer">
+        <div class="buttons">
+          <div class="button">
+            <%= link_to 'Back', pensions_path %>
+          </div>
+          <div class="button">
+            <%= link_to 'Edit', edit_pension_path(@pension) %>
+          </div>
+          <div class="button">
+            <%= link_to 'Destroy', @pension, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+        <div class="article">
+          <h3 class="title"><%= @pension.title %></h3>
+          <hr>
+          <div class="layer-img">
+            <img class="main-img" src="<%= @pension.image %>" alt="main img">
+          </div>
+          <hr>
+          <div class="article-content">
+            <%=@pension.content %>
+          </div>
+          <hr>
+          <div class="like">
+            <% if @pension.l_users.include?(current_user) %>
+              <!--좋아요를 했다면-->
+              <span class="like_after">
+                <%= link_to 'LIKE', like_pension_path, method: :post %>
+              </span>
+              <% else %>
+              <!--좋아요를 안했다면-->
+              <span class="like_before">
+                <%= link_to 'LIKE', like_pension_path, method: :post %>
+              </span>
+            <% end %>
+            <a> <%= @pension.likes.count %> 명이 좋아합니다.</a>
+          </div>
+          <hr>
+          <div class="comment-input">
+            <%=form_tag '/pensions/comment', method: 'post' do %>
+              <input type="hidden" name="user" value="<%=current_user.name%>">
+            	<input type="hidden" name="id" value="<%=@pension.id%>">
+            	<input type="text" name="comment">
+            	<input type="submit">
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%@pension_comments.each do |comment| %> 
+      	<% if comment.article_id == @pension.id %>
+      		<div class="comments">
+      		  <p class="user-name">
+      		    <% if comment.user == current_user.name %>
+      		    <%=comment.user%>
+      		     <a class="button-delete"  href="/pensions/<%=@pension.id%>/comment/<%=comment.id%>" data-method="delete" class="btn btn-default">delete</a>
+      		    <% end %>
+      		  </p>
+      		  <!--%= link_to '삭제', [comment.] , method: :delete, data: { confirm: 'Are you sure?' } %-->
+      		  <hr class="split">
+      			<p class=""><%=comment.message%></p>
+      		</div>
+      	<% end %>
+      <% end %>
+    </div>
+  </body>
+</html>

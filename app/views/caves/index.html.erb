@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://newgaenolram-hourensou.c9users.io/css/stylesheet-index.css">
+  </head>
+  
+  <body>
+    <section class="banner-area" id="home">
+  		<div class="container">
+  			<div class="row d-flex align-items-center justify-content-center">
+  				<div class="banner-content col-lg-3 col-md-3">
+  					<h1 class="title">Dog Cafe</h1>
+  				</div>
+  			</div>
+  		</div>
+    </section>
+    <div class="container-right-bar">
+      <div class="right-bar">
+        <div class="search-bar">
+          <%= form_tag caves_path, :method => :get do %>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "검색", :name => nil %>
+          <% end %>
+        </div>
+        <div class="new_article">
+          <%= link_to 'New Cafe', new_cafe_path %>
+        </div>
+      </div>
+    </div>
+    <section class="list">
+      <div class="container">
+        <div class="titlefont">
+          Best <span>Cafe</span> Top3
+        </div>
+        <div class ="col">
+          <% pension1 = nil%>
+          <% pension2 = nil%>
+          <% pension3 = nil%>
+          <% @caves.each do |pension|%>
+            <% if pension1 == nil || pension1.like2s.count < pension.like2s.count%>
+              <%pension3 = pension2%>
+              <%pension2 = pension1%>
+              <%pension1 = pension%>
+            <% elsif pension2 == nil || pension2.like2s.count < pension.like2s.count %>
+              <%pension3 = pension2%>
+              <%pension2 = pension%>
+            <% elsif pension3 == nil || pension3.like2s.count < pension.like2s.count %>
+              <%pension3 = pension%>
+            <%end%>
+          <%end%>
+          <div class="best-pension">
+            <% if pension1 != nil %>
+            <div class="card">
+              <img class="img-top" src="<%=pension1.image.url%>" alt="Card image cap">
+              <hr>
+              <div class="card-body">
+                <h6 class="card-title"><%=pension1.title%></h6>
+                <div class="button-type-1"><%= link_to 'Detail', "caves/#{pension1.id}/" %></div>
+                <hr>
+                <p><i class="fa fa-heart"></i> <%= pension1.like2s.size %> 명</p>
+              </div>
+            </div>
+            <%end%>
+            <% if pension2 != nil %>
+            <div class="card">
+              <img class="img-top" src="<%=pension2.image.url%>" alt="Card image cap">
+              <hr>
+              <div class="card-body">
+                <h6 class="card-title"><%=pension2.title%></h6>
+                <div class="button-type-1"><%= link_to 'Detail', "caves/#{pension2.id}/" %></div>
+                <hr>
+                <p><i class="fa fa-heart"></i> <%= pension2.like2s.size %> 명</p>
+              </div>
+            </div>
+            <%end%>
+            <% if pension3 != nil %>
+            <div class="card">
+              <img class="img-top" src="<%=pension3.image.url%>" alt="Card image cap">
+              <hr>
+              <div class="card-body">
+                <h6 class="card-title"><%=pension3.title%></h6>
+                <div class="button-type-1"><%= link_to 'Detail', "caves/#{pension3.id}/" %></div>
+                <hr>
+                <p><i class="fa fa-heart"></i> <%= pension3.like2s.size %> 명</p>
+              </div>
+            </div>
+            <%end%>
+          </div>
+          
+          <% @caves.each do |cafe|%>
+              <div class="card">
+                <img class="img-top" src="<%=cafe.image.url%>" alt="Card image cap">
+                <hr>
+                <div class="card-body">
+                  <h6 class="card-title"><%=cafe.title%></h6>
+                  <!--p class="card-text"><%#=pension.content%></p-->
+                  <div class="button-type-1"><%= link_to 'Detail', "caves/#{cafe.id}/" %></div>
+                  <hr>
+                  <p><i class="fa fa-heart"></i> <%= cafe.like2s.size %> 명</p>
+                </div>
+              </div>
+          <%end%>
+        </div>
+      </div>
+     </section>
+   </body>
+ </html>

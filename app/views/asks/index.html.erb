@@ -1,0 +1,65 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  
+  <section class="banner-area" id="home">
+  		<div class="container">
+  			<div class="row d-flex align-items-center justify-content-center">
+  				<div class="banner-content col-lg-3 col-md-3">
+  					<center><h1 class="title">Ask</h1>
+  				</div>
+  			</div>
+  		</div>
+    </section>
+  
+<p id="notice"><%= notice %></p>
+<style>
+  .container {
+      font-size:22px;
+  }
+</style>
+
+<center>
+  
+<div class="container" >
+<center>
+</center>
+<br><br>
+<div align="right">
+<%= form_tag asks_path, :method => :get do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "search", :name => nil %>
+<% end %>
+</div>
+<br><br>
+<table border="1" cellpadding="0" cellspacing="0" width="70%" class="table">
+
+    <tr align="center" style = "background-color:#9c9dc9;">
+      <th><font color="white">#</font></th>
+      <th><font color="white">Title</font></th>
+      <th><font color="white">Date</font></th>
+    </tr>
+
+  <tbody>
+    <% count = 1 %>
+    <% @asks.each do |ask| %>
+      <tr height="50" align="center">
+        <td><%= count %></td>
+        <td><%= link_to ask.title, ask %></td>
+        <% str = ask.created_at %>
+        
+        <td><%= ask.created_at.to_s.split(' ')[0] +" "+ ask.created_at.to_s.split(' ')[1]  %></td>
+      </tr>
+      <% count += 1 %>
+    <% end %>
+  </tbody>
+  
+</table>
+
+<br>
+
+<%= link_to 'New Ask', new_ask_path %>
+
+<br><br>
+</body>
